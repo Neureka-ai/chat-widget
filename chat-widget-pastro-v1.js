@@ -447,8 +447,8 @@
             welcomeText: '',
             responseTimeText: '',
             poweredBy: {
-                text: 'Powered by n8n',
-                link: 'https://n8n.partnerlinks.io/fabimarkl'
+                text: 'Powered by Neureka AI',
+                link: 'https://neureka-ai.com'
             }
         },
         style: {
@@ -533,7 +533,7 @@
         </div>
     `;
     
-    chatWindow.innerHTML = chatInterfaceHTML;
+    chatWindow.innerHTML = welcomeScreenHTML +chatInterfaceHTML;
     
     // Create toggle button
     const launchButton = document.createElement('button');
