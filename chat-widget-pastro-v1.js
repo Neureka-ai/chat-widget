@@ -533,7 +533,7 @@
         </div>
     `;
     
-    chatWindow.innerHTML = welcomeScreenHTML + chatInterfaceHTML;
+    chatWindow.innerHTML = chatInterfaceHTML;
     
     // Create toggle button
     const launchButton = document.createElement('button');
