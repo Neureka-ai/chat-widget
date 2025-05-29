@@ -873,22 +873,22 @@ function startChat() {
                 
                 switch(buttonText) {
                     case 'Dúvida':
-                        message = 'Duvida';
+                        message = 'Dúvida';
                         break;
                     case 'Agendamento':
                         message = 'Agendamento';
                         break;
                     case 'Ticket':
-                        message = 'Suporte';
+                        message = 'Ticket de suporte';
                         break;
                     case 'Energia':
-                        message = 'Energia';
+                        message = 'Análise de energia';
                         break;
                     default:
                         message = buttonText;
                 }
                 
-               // submitMessage(message);
+                submitMessage(message);
             });
         });
 
