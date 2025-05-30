@@ -747,7 +747,7 @@
     document.body.appendChild(widgetRoot);
 
 
-/*
+
 function adicionarCalendarioNaConversa() {
     const iframeContainer = document.createElement('div');
     iframeContainer.className = 'mensagem-bot'; // Use o mesmo estilo das respostas do bot
@@ -761,7 +761,7 @@ function adicionarCalendarioNaConversa() {
     messagesContainer.appendChild(iframeContainer);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
-*/
+
     // Get DOM elements
     const chatBody = chatWindow.querySelector('.chat-body');
     const messagesContainer = chatWindow.querySelector('.chat-messages');
