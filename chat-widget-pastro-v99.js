@@ -754,7 +754,7 @@ function adicionarCalendarioNaConversa() {
     iframeContainer.innerHTML = `
         <iframe 
             src="https://calendar.app.google/zPrDpjMJju2MssPh6" 
-            width="100%" height="400" frameborder="0" 
+            width="100%" height="1000" frameborder="0" 
             style="border-radius: 0px; margin-top: 30px;">
         </iframe>
     `;
@@ -900,6 +900,7 @@ function startChat() {
                         break;
                     case 'Agendamento':
                         message = 'Agendamento';
+                        window.open('https://calendar.google.com/calendar/u/0/r?pli=1', '_blank');
                         break;
                     case 'Ticket':
                         message = 'Ticket de suporte';
@@ -1045,7 +1046,7 @@ fileInput.addEventListener('change', (e) => {
         const messageText = messageTextarea.value.trim();
         if (messageText && !isWaitingForResponse) {
             submitMessage(messageText);
-            adicionarCalendarioNaConversa(); // 👈 Aqui abre o Cal.com
+            //adicionarCalendarioNaConversa(); // 👈 Aqui abre o Cal.com
             messageTextarea.value = '';
             messageTextarea.style.height = 'auto';
             messageTextarea.focus();
@@ -1060,7 +1061,7 @@ fileInput.addEventListener('change', (e) => {
             const messageText = messageTextarea.value.trim();
             if (messageText && !isWaitingForResponse) {
                 submitMessage(messageText);
-                adicionarCalendarioNaConversa(); // 👈 Também aqui, para quem envia com Enter
+                //adicionarCalendarioNaConversa(); // 👈 Também aqui, para quem envia com Enter
                 messageTextarea.value = '';
                 messageTextarea.style.height = 'auto';
                 messageTextarea.focus();
