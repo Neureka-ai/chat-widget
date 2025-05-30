@@ -754,7 +754,7 @@ function adicionarCalendarioNaConversa() {
     iframeContainer.innerHTML = `
         <iframe 
             src="https://calendar.app.google/zPrDpjMJju2MssPh6" 
-            width="100%" height="400" frameborder="0" 
+            width="100%" height="1000" frameborder="0" 
             style="border-radius: 0px; margin-top: 30px;">
         </iframe>
     `;
