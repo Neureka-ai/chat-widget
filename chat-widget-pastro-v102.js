@@ -732,6 +732,62 @@
     `;
     
     chatWindow.innerHTML = welcomeScreenHTML + chatInterfaceHTML;
+
+
+const fileInput = chatWindow.querySelector('#chat-file-upload');
+const messageTextarea = chatWindow.querySelector('.chat-textarea');
+    
+   fileInput.addEventListener('change', (e) => {
+    if (fileInput.files.length > 0) {
+        const fileName = fileInput.files[0].name;
+
+        // Cria o bloquinho visual
+        const previewContainer = chatWindow.querySelector('#file-preview-container');
+
+        // Remove bloquinhos anteriores (se só quiser um por vez)
+        previewContainer.innerHTML = '';
+
+        const fileBlock = document.createElement('div');
+        fileBlock.style.display = 'inline-flex';
+        fileBlock.style.alignItems = 'center';
+        fileBlock.style.backgroundColor = '#e0e0e0'; // cinza claro
+        fileBlock.style.borderRadius = '16px';
+        fileBlock.style.padding = '4px 10px';
+        fileBlock.style.fontSize = '14px';
+        fileBlock.style.marginTop = '4px';
+
+        const fileText = document.createElement('span');
+        fileText.textContent = fileName;
+        fileText.style.color = 'black';
+
+        const closeButton = document.createElement('span');
+        closeButton.textContent = '×';
+        closeButton.style.marginLeft = '8px';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.color = 'black';
+        closeButton.style.fontWeight = 'bold';
+
+        closeButton.addEventListener('click', () => {
+            previewContainer.removeChild(fileBlock);
+            fileInput.value = ''; // limpa o input
+        });
+
+        fileBlock.appendChild(fileText);
+        fileBlock.appendChild(closeButton);
+        previewContainer.appendChild(fileBlock);
+
+        // Feedback visual
+        fileInput.nextElementSibling.style.backgroundColor = 'var(--chat-color-light)';
+
+        // Ajusta altura do textarea, se tiver essa função
+        if (typeof autoResizeTextarea === 'function') {
+            autoResizeTextarea();
+        }
+
+        messageTextarea.focus();
+    }
+});
+
     
     // Create toggle button
     const launchButton = document.createElement('button');
@@ -1037,60 +1093,7 @@ async function submitMessage(messageText) {
 
     // Event listeners
     startChat(); 
-
-
-   fileInput.addEventListener('change', (e) => {
-    if (fileInput.files.length > 0) {
-        const fileName = fileInput.files[0].name;
-
-        // Cria o bloquinho visual
-        const previewContainer = chatWindow.querySelector('#file-preview-container');
-
-        // Remove bloquinhos anteriores (se só quiser um por vez)
-        previewContainer.innerHTML = '';
-
-        const fileBlock = document.createElement('div');
-        fileBlock.style.display = 'inline-flex';
-        fileBlock.style.alignItems = 'center';
-        fileBlock.style.backgroundColor = '#e0e0e0'; // cinza claro
-        fileBlock.style.borderRadius = '16px';
-        fileBlock.style.padding = '4px 10px';
-        fileBlock.style.fontSize = '14px';
-        fileBlock.style.marginTop = '4px';
-
-        const fileText = document.createElement('span');
-        fileText.textContent = fileName;
-        fileText.style.color = 'black';
-
-        const closeButton = document.createElement('span');
-        closeButton.textContent = '×';
-        closeButton.style.marginLeft = '8px';
-        closeButton.style.cursor = 'pointer';
-        closeButton.style.color = 'black';
-        closeButton.style.fontWeight = 'bold';
-
-        closeButton.addEventListener('click', () => {
-            previewContainer.removeChild(fileBlock);
-            fileInput.value = ''; // limpa o input
-        });
-
-        fileBlock.appendChild(fileText);
-        fileBlock.appendChild(closeButton);
-        previewContainer.appendChild(fileBlock);
-
-        // Feedback visual
-        fileInput.nextElementSibling.style.backgroundColor = 'var(--chat-color-light)';
-
-        // Ajusta altura do textarea, se tiver essa função
-        if (typeof autoResizeTextarea === 'function') {
-            autoResizeTextarea();
-        }
-
-        messageTextarea.focus();
-    }
-});
-
-  
+ 
     sendButton.addEventListener('click', () => {
         const messageText = messageTextarea.value.trim();
         if (messageText && !isWaitingForResponse) {
