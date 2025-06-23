@@ -709,12 +709,7 @@
     widgetRoot.style.setProperty('--chat-widget-surface', settings.style.backgroundColor);
     widgetRoot.style.setProperty('--chat-widget-text', settings.style.fontColor);
 
-    function resetFileInput() {
-    fileInput.value = '';
-    const fileNameDisplay = document.querySelector('.file-name-display');
-    if (fileNameDisplay) fileNameDisplay.textContent = '';
-    fileInput.nextElementSibling.style.backgroundColor = ''; // Remove o feedback visual
-}
+
     // Create chat panel
     const chatWindow = document.createElement('div');
     chatWindow.className = `chat-window ${settings.style.position === 'left' ? 'left-side' : 'right-side'}`;
@@ -812,7 +807,14 @@ function adicionarCalendarioNaConversa() {
     function createSessionId() {
         return crypto.randomUUID();
     }
-
+    
+    function resetFileInput() {
+    fileInput.value = '';
+    const fileNameDisplay = document.querySelector('.file-name-display');
+    if (fileNameDisplay) fileNameDisplay.textContent = '';
+    fileInput.nextElementSibling.style.backgroundColor = ''; // Remove o feedback visual
+}
+    
     // Create typing indicator element
     function createTypingIndicator() {
         const indicator = document.createElement('div');
