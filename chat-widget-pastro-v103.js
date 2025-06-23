@@ -781,19 +781,7 @@
 
 
 
-function adicionarCalendarioNaConversa() {
-    const iframeContainer = document.createElement('div');
-    iframeContainer.className = 'mensagem-bot'; // Use o mesmo estilo das respostas do bot
-    iframeContainer.innerHTML = `
-        <iframe 
-            src="https://calendar.app.google/zPrDpjMJju2MssPh6" 
-            width="100%" height="1000" frameborder="0" 
-            style="border-radius: 0px; margin-top: 30px;">
-        </iframe>
-    `;
-    messagesContainer.appendChild(iframeContainer);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
+
 
     // Get DOM elements
     const chatBody = chatWindow.querySelector('.chat-body');
@@ -813,6 +801,20 @@ function adicionarCalendarioNaConversa() {
     const fileNameDisplay = document.querySelector('.file-name-display');
     if (fileNameDisplay) fileNameDisplay.textContent = '';
     fileInput.nextElementSibling.style.backgroundColor = ''; // Remove o feedback visual
+}
+
+function adicionarCalendarioNaConversa() {
+    const iframeContainer = document.createElement('div');
+    iframeContainer.className = 'mensagem-bot'; // Use o mesmo estilo das respostas do bot
+    iframeContainer.innerHTML = `
+        <iframe 
+            src="https://calendar.app.google/zPrDpjMJju2MssPh6" 
+            width="100%" height="1000" frameborder="0" 
+            style="border-radius: 0px; margin-top: 30px;">
+        </iframe>
+    `;
+    messagesContainer.appendChild(iframeContainer);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
     
     // Create typing indicator element
