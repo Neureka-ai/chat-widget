@@ -716,6 +716,7 @@
                     <input type="file" id="chat-file-upload" class="file-upload-input" accept=".pdf,.doc,.docx,.jpg,.png">
                     <div class="file-name-display"></div> <!-- ESTA É A ÚNICA LINHA ADICIONADA -->
                 </div>
+                <div id="file-preview-container" style="margin-bottom: 8px;"></div>
                 <textarea class="chat-textarea" placeholder="Digite aqui..." rows="1"></textarea>
                 <button class="chat-submit">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1038,36 +1039,35 @@ async function submitMessage(messageText) {
     startChat(); 
 
 
-    fileInput.addEventListener('change', (e) => { 
+   fileInput.addEventListener('change', (e) => {
     if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const fileName = file.name;
-        
+        const fileName = fileInput.files[0].name;
+
         // Cria o bloquinho visual
-        const previewContainer = document.getElementById('file-preview-container');
-        
+        const previewContainer = chatWindow.querySelector('#file-preview-container');
+
+        // Remove bloquinhos anteriores (se só quiser um por vez)
+        previewContainer.innerHTML = '';
+
         const fileBlock = document.createElement('div');
-        fileBlock.style.display = 'flex';
+        fileBlock.style.display = 'inline-flex';
         fileBlock.style.alignItems = 'center';
         fileBlock.style.backgroundColor = '#e0e0e0'; // cinza claro
-        fileBlock.style.color = 'white';
         fileBlock.style.borderRadius = '16px';
-        fileBlock.style.padding = '6px 12px';
+        fileBlock.style.padding = '4px 10px';
         fileBlock.style.fontSize = '14px';
-        fileBlock.style.maxWidth = '100%';
-        fileBlock.style.position = 'relative';
+        fileBlock.style.marginTop = '4px';
 
         const fileText = document.createElement('span');
         fileText.textContent = fileName;
         fileText.style.color = 'black';
-        fileText.style.marginRight = '8px';
-        
+
         const closeButton = document.createElement('span');
-        closeButton.innerHTML = '&times;';
+        closeButton.textContent = '×';
+        closeButton.style.marginLeft = '8px';
         closeButton.style.cursor = 'pointer';
         closeButton.style.color = 'black';
         closeButton.style.fontWeight = 'bold';
-        closeButton.style.marginLeft = 'auto';
 
         closeButton.addEventListener('click', () => {
             previewContainer.removeChild(fileBlock);
@@ -1078,15 +1078,14 @@ async function submitMessage(messageText) {
         fileBlock.appendChild(closeButton);
         previewContainer.appendChild(fileBlock);
 
-        // Limpa o texto do textarea se for só o nome do arquivo
-        if (messageTextarea.value.trim() === fileName) {
-            messageTextarea.value = '';
-        }
-
         // Feedback visual
         fileInput.nextElementSibling.style.backgroundColor = 'var(--chat-color-light)';
 
-        autoResizeTextarea();
+        // Ajusta altura do textarea, se tiver essa função
+        if (typeof autoResizeTextarea === 'function') {
+            autoResizeTextarea();
+        }
+
         messageTextarea.focus();
     }
 });
