@@ -1037,28 +1037,60 @@ async function submitMessage(messageText) {
     // Event listeners
     startChat(); 
 
-fileInput.addEventListener('change', (e) => {
+
+    fileInput.addEventListener('change', (e) => { 
     if (fileInput.files.length > 0) {
-        const fileName = fileInput.files[0].name;
+        const file = fileInput.files[0];
+        const fileName = file.name;
         
-        // Insere o nome do arquivo no campo de texto
-        if (messageTextarea.value.trim() === '') {
-            messageTextarea.value = fileName;
-        } else {
-            // Se já houver texto, adiciona o nome do arquivo em uma nova linha
-            messageTextarea.value += '\n' + fileName;
+        // Cria o bloquinho visual
+        const previewContainer = document.getElementById('file-preview-container');
+        
+        const fileBlock = document.createElement('div');
+        fileBlock.style.display = 'flex';
+        fileBlock.style.alignItems = 'center';
+        fileBlock.style.backgroundColor = '#e0e0e0'; // cinza claro
+        fileBlock.style.color = 'white';
+        fileBlock.style.borderRadius = '16px';
+        fileBlock.style.padding = '6px 12px';
+        fileBlock.style.fontSize = '14px';
+        fileBlock.style.maxWidth = '100%';
+        fileBlock.style.position = 'relative';
+
+        const fileText = document.createElement('span');
+        fileText.textContent = fileName;
+        fileText.style.color = 'black';
+        fileText.style.marginRight = '8px';
+        
+        const closeButton = document.createElement('span');
+        closeButton.innerHTML = '&times;';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.color = 'black';
+        closeButton.style.fontWeight = 'bold';
+        closeButton.style.marginLeft = 'auto';
+
+        closeButton.addEventListener('click', () => {
+            previewContainer.removeChild(fileBlock);
+            fileInput.value = ''; // limpa o input
+        });
+
+        fileBlock.appendChild(fileText);
+        fileBlock.appendChild(closeButton);
+        previewContainer.appendChild(fileBlock);
+
+        // Limpa o texto do textarea se for só o nome do arquivo
+        if (messageTextarea.value.trim() === fileName) {
+            messageTextarea.value = '';
         }
-        
+
         // Feedback visual
         fileInput.nextElementSibling.style.backgroundColor = 'var(--chat-color-light)';
-        
-        // Ajusta a altura do textarea
+
         autoResizeTextarea();
-        
-        // Foca no campo de texto para facilitar a edição
         messageTextarea.focus();
     }
 });
+
   
     sendButton.addEventListener('click', () => {
         const messageText = messageTextarea.value.trim();
