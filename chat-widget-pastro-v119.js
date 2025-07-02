@@ -20,7 +20,7 @@
     const widgetStyles = document.createElement('style');
     widgetStyles.textContent = `
         .chat-assist-widget {
-            --chat-color-primary: var(--chat-widget-primary, #97B4BB);
+            --chat-color-primary: var(--chat-widget-primary, #97B4BB); // cor primaria
             --chat-color-secondary: var(--chat-widget-secondary, #187874);
             --chat-color-tertiary: var(--chat-widget-tertiary, #b3dfa1);
             --chat-color-light: var(--chat-widget-light, #dff7d4);
