@@ -757,7 +757,7 @@ function adicionarCalendarioNaConversa() {
     iframeContainer.className = 'mensagem-bot'; // Use o mesmo estilo das respostas do bot
     iframeContainer.innerHTML = `
         <iframe 
-            src="https://calendar.app.google/ewtvGtREpJzwKHZ69" 
+            src="https://calendar.app.google/CgsSSRopGdoaxKKK9" 
             width="100%" height="1500" frameborder="0" 
             style="border-radius: 0px; margin-top: 30px;">
         </iframe>
